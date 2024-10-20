@@ -15,6 +15,39 @@
  *     }
  * }
  */
+//DFS
+
+class Solution {
+    List<List<Integer>> list;
+    public List<List<Integer>> levelOrder(TreeNode root) 
+    {
+        list = new ArrayList<>();
+        dfs(root, 0);
+        return list;
+    }
+    private void dfs(TreeNode root, int level)
+    {
+        List<Integer> innerList;
+        if(root==null) return;
+        
+        if(list.size()==level)
+        {
+            innerList = new ArrayList<>();
+            
+            list.add(innerList);
+        }
+        else
+        {
+            innerList = list.get(level);
+        }
+        innerList.add(root.val);
+        if(root.left!=null) dfs(root.left,level+1);
+        if(root.right!=null) dfs(root.right,level+1);
+    }
+    
+}
+////////////////
+//BFS
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> list = new ArrayList<List<Integer>>();
